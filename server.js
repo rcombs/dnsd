@@ -129,6 +129,10 @@ Server.prototype.on_tcp_connection = function(connection) {
 
   connection.type = 'tcp'
   connection.server = self
+  
+  connection.on('error', function(error) {
+    self.emit('error', err)
+  })
 
   connection.on('data', function(data) {
     bufs.push(data)
